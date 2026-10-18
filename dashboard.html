@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Leads | Lisiane Fogaça Advocacia</title>
+<link rel="icon" type="image/png" href="/assets/img/favicon.png">
+<style>
+:root{
+  --bg:#0A0A0A;--card:#171717;--card-2:#1F1F1F;--line:#262626;--line-2:#333333;
+  --tx:#FAFAFA;--tx-2:#A3A3A3;--tx-3:#737373;
+  --visits:#3987e5;--leads:#d95926;--conv:#199e70;--danger:#f87171;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--tx)}
+body{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;font-size:14px;line-height:1.45;-webkit-font-smoothing:antialiased}
+button,input{font-family:inherit;font-size:inherit;color:inherit}
+:focus-visible{outline:2px solid #FAFAFA;outline-offset:2px}
+.hide{display:none !important}
+.wrap{max-width:1240px;margin:0 auto;padding:28px 20px 64px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px}
+.card-h{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:18px 20px;border-bottom:1px solid var(--line)}
+.card-t{margin:0;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--tx-2)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:36px;padding:0 14px;border-radius:8px;border:1px solid var(--line-2);background:transparent;color:var(--tx);font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:background .15s,border-color .15s}
+.btn:hover{background:var(--card-2);border-color:#404040}
+.btn-solid{background:#FAFAFA;color:#0A0A0A;border-color:#FAFAFA}
+.btn-solid:hover{background:#E5E5E5;border-color:#E5E5E5}
+.btn[disabled]{opacity:.6;cursor:progress}
+.inp{min-height:36px;padding:0 10px;border-radius:8px;border:1px solid var(--line-2);background:#0F0F0F;color:var(--tx);outline:none;color-scheme:dark}
+.inp:focus{border-color:#525252}
+.seg{display:inline-flex;border:1px solid var(--line-2);border-radius:8px;overflow:hidden}
+.seg button{min-height:34px;padding:0 10px;border:0;background:transparent;color:var(--tx-2);font-size:12px;font-weight:600;cursor:pointer}
+.seg button+button{border-left:1px solid var(--line-2)}
+.seg button[aria-pressed="true"]{background:var(--card-2);color:var(--tx)}
+.lbl{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--tx-3)}
+
+/* login */
+.login{min-height:100vh;min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:24px}
+.login .card{width:100%;max-width:380px;padding:28px}
+.fld{display:flex;flex-direction:column;gap:6px;margin-top:16px}
+.fld .inp{min-height:44px;font-size:15px}
+.err{margin-top:14px;color:var(--danger);font-size:13px;min-height:18px}
+
+/* top */
+.top{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:22px}
+.top h1{margin:0;font-size:22px;font-weight:700;letter-spacing:.02em}
+.top p{margin:6px 0 0;color:var(--tx-2)}
+
+/* kpis */
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:12px}
+.kpi{padding:18px 20px}
+.kpi .v{margin-top:8px;font-size:30px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.kpi .s{margin-top:2px;color:var(--tx-3);font-size:12px}
+@media (max-width:640px){.kpis{grid-template-columns:minmax(0,1fr)}}
+
+.grid{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+.filters{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.filters label{display:flex;align-items:center;gap:8px}
+.chart-box{position:relative;height:280px;padding:16px 16px 0}
+.chart-box.sm{height:140px;padding-top:8px}
+.sub-t{padding:16px 20px 0;font-size:12px;color:var(--tx-3)}
+.legend{display:flex;flex-wrap:wrap;gap:18px;padding:14px 20px 18px;border-top:1px solid var(--line);margin-top:12px;color:var(--tx-2);font-size:13px}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.sw{width:14px;height:3px;border-radius:2px;display:inline-block}
+.empty{padding:28px 20px;text-align:center;color:var(--tx-3)}
+
+/* tables */
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th{position:sticky;top:0;background:var(--card);text-align:left;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--tx-3);padding:12px 20px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:13px 20px;border-bottom:1px solid var(--line);color:var(--tx);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:#1B1B1B}
+td.muted{color:var(--tx-2)}
+.num{text-align:right}
+.wa{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:0 12px;border-radius:8px;border:1px solid var(--line-2);color:var(--tx);text-decoration:none;font-size:12px;font-weight:600;transition:background .15s,border-color .15s}
+.wa:hover{background:var(--card-2);border-color:#404040}
+.tag{display:inline-block;padding:3px 8px;border-radius:6px;background:var(--card-2);border:1px solid var(--line-2);color:var(--tx-2);font-size:12px;max-width:260px;overflow:hidden;text-overflow:ellipsis;vertical-align:middle}
+.loading{position:fixed;left:0;top:0;height:2px;width:100%;background:linear-gradient(90deg,transparent,#FAFAFA,transparent);background-size:50% 100%;background-repeat:no-repeat;animation:ld 1s linear infinite;z-index:10}
+@keyframes ld{from{background-position:-50% 0}to{background-position:150% 0}}
+</style>
+<script src="/assets/js/config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
+</head>
+<body>
+<div class="loading hide" id="loading" aria-hidden="true"></div>
+
+<!-- LOGIN -->
+<section class="login hide" id="v-login" aria-labelledby="lg-t">
+  <form class="card" id="lg-form" novalidate>
+    <div class="lbl">Painel de leads</div>
+    <h1 id="lg-t" style="margin:6px 0 0;font-size:20px;font-weight:700" data-title></h1>
+    <div class="fld">
+      <label class="lbl" for="lg-user">Usuário</label>
+      <input class="inp" id="lg-user" autocomplete="username" required>
+    </div>
+    <div class="fld">
+      <label class="lbl" for="lg-pass">Senha</label>
+      <input class="inp" id="lg-pass" type="password" autocomplete="current-password" required>
+    </div>
+    <div class="err" id="lg-err" role="alert"></div>
+    <button class="btn btn-solid" id="lg-btn" type="submit" style="width:100%;min-height:44px;margin-top:6px">Entrar</button>
+  </form>
+</section>
+
+<!-- DASHBOARD -->
+<div class="wrap hide" id="v-dash">
+  <header class="top">
+    <div>
+      <h1>LEADS — <span data-title></span></h1>
+      <p id="sub">Carregando…</p>
+    </div>
+    <button class="btn" id="logout" type="button">Sair</button>
+  </header>
+
+  <div class="kpis">
+    <div class="card kpi"><div class="lbl">Visitas no período</div><div class="v" id="k-vis">—</div><div class="s">Carregamentos da página</div></div>
+    <div class="card kpi"><div class="lbl">Leads no período</div><div class="v" id="k-lead">—</div><div class="s">Formulários enviados</div></div>
+    <div class="card kpi"><div class="lbl">Conversão</div><div class="v" id="k-conv">—</div><div class="s">Leads ÷ visitas</div></div>
+  </div>
+
+  <div class="grid">
+    <section class="card" aria-labelledby="ev-t">
+      <div class="card-h">
+        <h2 class="card-t" id="ev-t">Evolução diária</h2>
+        <div class="filters">
+          <div class="seg" role="group" aria-label="Período rápido">
+            <button type="button" data-days="7" aria-pressed="false">7d</button>
+            <button type="button" data-days="30" aria-pressed="true">30d</button>
+            <button type="button" data-days="90" aria-pressed="false">90d</button>
+          </div>
+          <label><span class="lbl">De</span><input class="inp" type="date" id="f-de"></label>
+          <label><span class="lbl">Até</span><input class="inp" type="date" id="f-ate"></label>
+        </div>
+      </div>
+      <div id="ev-body">
+        <div class="chart-box"><canvas id="ch-main" role="img" aria-label="Gráfico de visitas e cadastros por dia"></canvas></div>
+        <div class="sub-t">Taxa de conversão diária (%)</div>
+        <div class="chart-box sm"><canvas id="ch-conv" role="img" aria-label="Gráfico da taxa de conversão diária"></canvas></div>
+        <div class="legend">
+          <span><i class="sw" style="background:var(--visits)"></i>Visitas</span>
+          <span><i class="sw" style="background:var(--leads)"></i>Cadastros</span>
+          <span><i class="sw" style="background:var(--conv)"></i>Taxa de conversão (%)</span>
+        </div>
+      </div>
+      <div class="empty hide" id="ev-empty">Nenhum dado encontrado no período.</div>
+    </section>
+
+    <section class="card" aria-labelledby="lp-t">
+      <div class="card-h"><h2 class="card-t" id="lp-t">Conversão por LP</h2></div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>LP</th><th class="num">Visitas</th><th class="num">Leads</th><th class="num">Conv.</th></tr></thead>
+          <tbody id="t-lp"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="ld-t">
+      <div class="card-h">
+        <h2 class="card-t" id="ld-t">Leads</h2>
+        <div class="filters">
+          <input class="inp" id="q" type="search" placeholder="Buscar nome ou telefone" aria-label="Buscar leads" style="min-width:220px">
+          <button class="btn" id="csv" type="button">Exportar CSV</button>
+        </div>
+      </div>
+      <div class="tbl-wrap" style="max-height:640px;overflow:auto">
+        <table>
+          <thead><tr><th>Nome</th><th>WhatsApp</th><th>LP</th><th>Origem</th><th>Data</th><th>Ação</th></tr></thead>
+          <tbody id="t-leads"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script>
+(function () {
+  var C = window.LP_CONFIG;
+  var SITES = [C.SITE];
+  var TZ = 'America/Sao_Paulo';
+  var sb = window.supabase.createClient(C.SUPABASE_URL, C.SUPABASE_ANON_KEY, { auth: { persistSession: true, autoRefreshToken: true } });
+
+  var $ = function (id) { return document.getElementById(id); };
+  document.querySelectorAll('[data-title]').forEach(function (el) { el.textContent = C.DASHBOARD_TITLE; });
+
+  var state = { visits: [], leads: [], totalLeads: 0 };
+  var charts = {};
+
+  /* ---------- datas (fuso de São Paulo) ---------- */
+  var fmtKey = new Intl.DateTimeFormat('en-CA', { timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit' });
+  var fmtShort = new Intl.DateTimeFormat('pt-BR', { timeZone: TZ, day: '2-digit', month: '2-digit' });
+  var fmtFull = new Intl.DateTimeFormat('pt-BR', { timeZone: TZ, day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+  function dayKey(d) { return fmtKey.format(d); }
+  function addDays(key, n) { var d = new Date(key + 'T12:00:00-03:00'); d.setUTCDate(d.getUTCDate() + n); return dayKey(d); }
+  function today() { return dayKey(new Date()); }
+  function setRange(days) {
+    $('f-ate').value = today();
+    $('f-de').value = addDays(today(), -(days - 1));
+    document.querySelectorAll('.seg button').forEach(function (b) { b.setAttribute('aria-pressed', String(+b.dataset.days === days)); });
+  }
+
+  /* ---------- auth ---------- */
+  function show(view) {
+    $('v-login').classList.toggle('hide', view !== 'login');
+    $('v-dash').classList.toggle('hide', view !== 'dash');
+  }
+  function loading(on) { $('loading').classList.toggle('hide', !on); }
+
+  $('lg-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var u = $('lg-user').value.trim(), p = $('lg-pass').value;
+    $('lg-err').textContent = '';
+    if (!u || !p) { $('lg-err').textContent = 'Informe usuário e senha.'; return; }
+    var email = u.indexOf('@') > -1 ? u : (u.toLowerCase() === String(C.DASHBOARD_USER).toLowerCase() ? C.DASHBOARD_LOGIN_EMAIL : null);
+    if (!email) { $('lg-err').textContent = 'Usuário ou senha inválidos.'; return; }
+    $('lg-btn').disabled = true; $('lg-btn').textContent = 'Entrando…';
+    var res = await sb.auth.signInWithPassword({ email: email, password: p });
+    $('lg-btn').disabled = false; $('lg-btn').textContent = 'Entrar';
+    if (res.error) { $('lg-err').textContent = 'Usuário ou senha inválidos.'; return; }
+    $('lg-pass').value = '';
+    start();
+  });
+  $('logout').addEventListener('click', async function () {
+    await sb.auth.signOut();
+    Object.keys(charts).forEach(function (k) { charts[k].destroy(); delete charts[k]; });
+    show('login');
+  });
+
+  /* ---------- dados ---------- */
+  async function fetchAll(table, cols, from, to) {
+    var out = [], page = 1000, i = 0;
+    while (true) {
+      var q = sb.from(table).select(cols).in('site', SITES).order('created_at', { ascending: false }).range(i, i + page - 1);
+      if (from) q = q.gte('created_at', from);
+      if (to) q = q.lte('created_at', to);
+      var r = await q;
+      if (r.error) throw r.error;
+      out = out.concat(r.data || []);
+      if (!r.data || r.data.length < page) break;
+      i += page;
+      if (i > 200000) break;
+    }
+    return out;
+  }
+
+  async function load() {
+    var de = $('f-de').value, ate = $('f-ate').value;
+    if (!de || !ate) return;
+    if (de > ate) { var t = de; de = ate; ate = t; $('f-de').value = de; $('f-ate').value = ate; }
+    var from = de + 'T00:00:00-03:00', to = ate + 'T23:59:59.999-03:00';
+    loading(true);
+    try {
+      var res = await Promise.all([
+        fetchAll('lp_visits', 'created_at,site', from, to),
+        fetchAll('lp_leads', 'id,created_at,site,nome,whatsapp,origem', from, to),
+        sb.from('lp_leads').select('id', { count: 'exact', head: true }).in('site', SITES)
+      ]);
+      state.visits = res[0]; state.leads = res[1]; state.totalLeads = res[2].count || 0;
+      render(de, ate);
+    } catch (err) {
+      console.error(err);
+      $('sub').textContent = 'Não foi possível carregar os dados. Tente novamente.';
+      if (err && (err.code === 'PGRST301' || /JWT/i.test(err.message || ''))) { await sb.auth.signOut(); show('login'); }
+    } finally { loading(false); }
+  }
+
+  /* ---------- render ---------- */
+  var nf = new Intl.NumberFormat('pt-BR');
+  function pct(a, b) { return b ? (a / b * 100) : 0; }
+  function pctTxt(a, b) { return b ? pct(a, b).toLocaleString('pt-BR', { maximumFractionDigits: 1, minimumFractionDigits: 1 }) + '%' : '—'; }
+
+  function render(de, ate) {
+    var nv = state.visits.length, nl = state.leads.length;
+    $('sub').textContent = nf.format(state.totalLeads) + (state.totalLeads === 1 ? ' lead no total' : ' leads no total');
+    $('k-vis').textContent = nf.format(nv);
+    $('k-lead').textContent = nf.format(nl);
+    $('k-conv').textContent = pctTxt(nl, nv);
+    renderChart(de, ate);
+    renderLp();
+    renderLeads();
+  }
+
+  function renderChart(de, ate) {
+    var days = [], k = de;
+    while (k <= ate && days.length < 400) { days.push(k); k = addDays(k, 1); }
+    var vMap = {}, lMap = {};
+    state.visits.forEach(function (r) { var d = dayKey(new Date(r.created_at)); vMap[d] = (vMap[d] || 0) + 1; });
+    state.leads.forEach(function (r) { var d = dayKey(new Date(r.created_at)); lMap[d] = (lMap[d] || 0) + 1; });
+    var vis = days.map(function (d) { return vMap[d] || 0; });
+    var lea = days.map(function (d) { return lMap[d] || 0; });
+    var conv = days.map(function (d, i) { return vis[i] ? +(lea[i] / vis[i] * 100).toFixed(1) : null; });
+    var labels = days.map(function (d) { return fmtShort.format(new Date(d + 'T12:00:00-03:00')); });
+
+    var has = state.visits.length + state.leads.length > 0;
+    $('ev-body').classList.toggle('hide', !has);
+    $('ev-empty').classList.toggle('hide', has);
+    if (!has) return;
+
+    var grid = '#262626', tick = '#737373';
+    var common = {
+      responsive: true, maintainAspectRatio: false, animation: { duration: 300 },
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: { backgroundColor: '#0A0A0A', borderColor: '#333', borderWidth: 1, titleColor: '#FAFAFA', bodyColor: '#D4D4D4', padding: 10, boxPadding: 4, usePointStyle: true }
+      },
+      scales: {
+        x: { grid: { display: false }, border: { color: grid }, ticks: { color: tick, maxRotation: 0, autoSkipPadding: 16 } },
+        y: { beginAtZero: true, grid: { color: grid }, border: { display: false }, ticks: { color: tick, precision: 0 } }
+      },
+      elements: { line: { borderWidth: 2, tension: .3 }, point: { radius: 0, hoverRadius: 5, hitRadius: 12 } }
+    };
+
+    if (charts.main) charts.main.destroy();
+    charts.main = new Chart($('ch-main'), {
+      type: 'line',
+      data: { labels: labels, datasets: [
+        { label: 'Visitas', data: vis, borderColor: '#3987e5', backgroundColor: '#3987e5', pointBackgroundColor: '#3987e5' },
+        { label: 'Cadastros', data: lea, borderColor: '#d95926', backgroundColor: '#d95926', pointBackgroundColor: '#d95926' }
+      ]},
+      options: common
+    });
+
+    var convOpts = JSON.parse(JSON.stringify(common));
+    convOpts.scales.y.ticks = { color: tick, callback: function (v) { return v + '%'; }, maxTicksLimit: 4 };
+    convOpts.plugins.tooltip.callbacks = { label: function (c) { return ' Conversão: ' + (c.raw == null ? '—' : c.raw.toLocaleString('pt-BR') + '%'); } };
+    convOpts.plugins.tooltip.backgroundColor = '#0A0A0A';
+    convOpts.spanGaps = true;
+    if (charts.conv) charts.conv.destroy();
+    charts.conv = new Chart($('ch-conv'), {
+      type: 'line',
+      data: { labels: labels, datasets: [
+        { label: 'Conversão', data: conv, borderColor: '#199e70', backgroundColor: '#199e70', pointBackgroundColor: '#199e70' }
+      ]},
+      options: convOpts
+    });
+  }
+
+  function cell(tr, text, cls) { var td = document.createElement('td'); td.textContent = text; if (cls) td.className = cls; tr.appendChild(td); return td; }
+  function emptyRow(tbody, cols, text) {
+    var tr = document.createElement('tr'); var td = document.createElement('td');
+    td.colSpan = cols; td.className = 'empty'; td.textContent = text; tr.appendChild(td); tbody.appendChild(tr);
+  }
+
+  function renderLp() {
+    var tb = $('t-lp'); tb.textContent = '';
+    var agg = {};
+    SITES.forEach(function (s) { agg[s] = { v: 0, l: 0 }; });
+    state.visits.forEach(function (r) { (agg[r.site] = agg[r.site] || { v: 0, l: 0 }).v++; });
+    state.leads.forEach(function (r) { (agg[r.site] = agg[r.site] || { v: 0, l: 0 }).l++; });
+    var keys = Object.keys(agg).filter(function (k) { return agg[k].v || agg[k].l; });
+    if (!keys.length) { emptyRow(tb, 4, 'Nenhum dado encontrado.'); return; }
+    keys.forEach(function (k) {
+      var tr = document.createElement('tr');
+      cell(tr, k); cell(tr, nf.format(agg[k].v), 'num'); cell(tr, nf.format(agg[k].l), 'num'); cell(tr, pctTxt(agg[k].l, agg[k].v), 'num');
+      tb.appendChild(tr);
+    });
+  }
+
+  function phoneFmt(w) {
+    var d = String(w || '').replace(/\D/g, '');
+    var n = d.indexOf('55') === 0 && d.length > 11 ? d.slice(2) : d;
+    if (n.length === 11) return '(' + n.slice(0, 2) + ') ' + n.slice(2, 7) + '-' + n.slice(7);
+    if (n.length === 10) return '(' + n.slice(0, 2) + ') ' + n.slice(2, 6) + '-' + n.slice(6);
+    return w || '—';
+  }
+  function waLink(r) {
+    var d = String(r.whatsapp || '').replace(/\D/g, '');
+    if (d.length === 10 || d.length === 11) d = '55' + d;
+    var first = String(r.nome || '').trim().split(/\s+/)[0] || '';
+    var msg = String(C.WHATSAPP_LEAD_MESSAGE).replace('{nome}', first);
+    return 'https://wa.me/' + d + '?text=' + encodeURIComponent(msg);
+  }
+
+  function filteredLeads() {
+    var q = $('q').value.trim().toLowerCase(), qd = q.replace(/\D/g, '');
+    if (!q) return state.leads;
+    return state.leads.filter(function (r) {
+      return String(r.nome || '').toLowerCase().indexOf(q) > -1 || (qd && String(r.whatsapp || '').replace(/\D/g, '').indexOf(qd) > -1);
+    });
+  }
+
+  function renderLeads() {
+    var tb = $('t-leads'); tb.textContent = '';
+    var rows = filteredLeads();
+    if (!rows.length) { emptyRow(tb, 6, 'Nenhum lead encontrado.'); return; }
+    rows.forEach(function (r) {
+      var tr = document.createElement('tr');
+      cell(tr, r.nome || '—');
+      cell(tr, phoneFmt(r.whatsapp), 'muted');
+      cell(tr, r.site || '—', 'muted');
+      var td = document.createElement('td'); var tg = document.createElement('span'); tg.className = 'tag'; tg.textContent = r.origem || 'direto'; tg.title = r.origem || 'direto'; td.appendChild(tg); tr.appendChild(td);
+      cell(tr, fmtFull.format(new Date(r.created_at)), 'muted');
+      var ta = document.createElement('td'); var a = document.createElement('a');
+      a.className = 'wa'; a.href = waLink(r); a.target = '_blank'; a.rel = 'noopener noreferrer';
+      a.setAttribute('aria-label', 'Abrir WhatsApp de ' + (r.nome || 'lead'));
+      a.innerHTML = '<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>';
+      a.appendChild(document.createTextNode('WhatsApp'));
+      ta.appendChild(a); tr.appendChild(ta);
+      tb.appendChild(tr);
+    });
+  }
+
+  function csvEsc(v) {
+    var s = String(v == null ? '' : v);
+    if (/^[=+\-@]/.test(s)) s = "'" + s; // evita fórmulas no Excel
+    return '"' + s.replace(/"/g, '""') + '"';
+  }
+  $('csv').addEventListener('click', function () {
+    var rows = filteredLeads();
+    var lines = [['Nome', 'WhatsApp', 'LP', 'Origem', 'Data'].map(csvEsc).join(';')];
+    rows.forEach(function (r) { lines.push([r.nome, phoneFmt(r.whatsapp), r.site, r.origem, fmtFull.format(new Date(r.created_at))].map(csvEsc).join(';')); });
+    var blob = new Blob(['﻿' + lines.join('\n')], { type: 'text/csv;charset=utf-8' });
+    var a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+    a.download = 'leads-' + C.SITE + '-' + $('f-de').value + '_a_' + $('f-ate').value + '.csv';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+  });
+
+  /* ---------- eventos ---------- */
+  document.querySelectorAll('.seg button').forEach(function (b) {
+    b.addEventListener('click', function () { setRange(+b.dataset.days); load(); });
+  });
+  ['f-de', 'f-ate'].forEach(function (id) {
+    $(id).addEventListener('change', function () {
+      document.querySelectorAll('.seg button').forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+      load();
+    });
+  });
+  $('q').addEventListener('input', renderLeads);
+
+  function start() { show('dash'); if (!$('f-de').value) setRange(30); load(); }
+
+  sb.auth.getSession().then(function (r) {
+    if (r.data && r.data.session) start(); else { show('login'); $('lg-user').focus(); }
+  });
+})();
+</script>
+</body>
+</html>
