@@ -13,10 +13,10 @@ window.LP_CONFIG = {
   SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF4aG5qenlodGxsbXRkcmN5eWdpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIyMzczNjgsImV4cCI6MjA5NzgxMzM2OH0.DWf4I_x9F--H7ZZHUt_n4V3B__Nlsf1jNZdUV0vNBLU',
 
   // WhatsApp do escritório: só dígitos, com 55 + DDD. Ex.: '5511999999999'
-  WHATSAPP_NUMBER: '55XXXXXXXXXXX',
+  WHATSAPP_NUMBER: '5551994148660',
 
   // Mensagem enviada quando o lead abre o WhatsApp pela página /redirect
-  WHATSAPP_MESSAGE: 'Olá! Me chamo {nome} e acabei de preencher o formulário no site. Gostaria de falar sobre meu caso.',
+  WHATSAPP_MESSAGE: 'Olá! Vim do Google, me chamo {nome} e acabei de preencher o formulário no site. Gostaria de falar sobre meu caso.',
 
   // ID do Pixel do Meta (deixe vazio para desativar). Ex.: '123456789012345'
   META_PIXEL_ID: '',
